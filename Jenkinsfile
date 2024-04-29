@@ -4,13 +4,13 @@ pipeline {
       stages{
             stage("GIT checkout"){
             steps{
-                 git 'https://github.com/RAJANI9/boxfuse-sample-java-war-hello.git'
+                 git 'https://github.com/isaitejabandari/sample-war-hello.git'
               }
             }
             stage("build"){
                   steps{
                        sh "mvn clean package"
-                       sh "mv target/*.war target/boxfuse-sample-java-war-hello.war"
+                       sh "mv target/*.war target/sample-war-hello.war"
                       }
                        
             }
