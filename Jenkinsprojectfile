@@ -30,7 +30,7 @@ pipeline {
                 expression { params.BRANCH_NAME == 'fe/dev' }
             }
             steps {
-                deployToTomcat('52.14.94.232', 'tomcat', 'tomcat', 'http://52.14.94.232:8080/manager/text', '/sample-war-hello', 'Dev')
+                deployToTomcat('65.0.21.90', 'tomcat', 'tomcat', 'http://65.0.21.90:8080/manager/text', '/sample-war-hello', 'Dev')
             }
         }
         stage("Deploy to QA") {
@@ -38,7 +38,7 @@ pipeline {
                 expression { params.BRANCH_NAME == 'fe/qa' }
             }
             steps {
-                deployToTomcat('18.223.15.111', 'tomcat', 'tomcat', 'http://18.223.15.111:8080/manager/text', '/sample-war-hello', 'QA')
+                deployToTomcat('13.201.187.212', 'tomcat', 'tomcat', 'http://13.201.187.212:8080/manager/text', '/sample-war-hello', 'QA')
             }
         }
         stage("Deploy to Prod") {
@@ -52,7 +52,7 @@ pipeline {
                 deployToTomcat('13.127.82.104', 'tomcat', 'tomcat', 'http://13.127.82.104:8080/manager/text', '/sample-war-hello', 'Prod')
                 
                 // Send Slack notification
-                slackSend(channel: 'aws-devops', message: "Deployment to PROD has been approved by manager.")
+                slackSend(channel: 'devops', message: "Deployment to PROD has been approved by saiteja.")
             }
         }
     }
