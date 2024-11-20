@@ -49,7 +49,7 @@ pipeline {
                 input(message: "Do you want to proceed to PROD?", ok: "Proceed") // Approval step
 
                 // Deploy to PROD server after approval
-                deployToTomcat('3.16.165.204', 'tomcat', 'tomcat', 'http://3.16.165.204:8080/manager/text', '/sample-war-hello', 'Prod')
+                deployToTomcat('13.127.82.104', 'tomcat', 'tomcat', 'http://13.127.82.104:8080/manager/text', '/sample-war-hello', 'Prod')
                 
                 // Send Slack notification
                 slackSend(channel: 'aws-devops', message: "Deployment to PROD has been approved by manager.")
