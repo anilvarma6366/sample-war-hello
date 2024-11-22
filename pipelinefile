@@ -11,7 +11,7 @@ pipeline {
                 script {
                     // Checkout the specified branch
                     def branchName = params.BRANCH_NAME
-                    checkout([$class: 'GitSCM', branches: [[name: branchName]], userRemoteConfigs: [[url: 'https://github.com/isaitejabandari/sample-war-hello.git']]])
+                    checkout([$class: 'GitSCM', branches: [[name: branchName]], userRemoteConfigs: [[url: 'https://github.com/anilvarma6366/sample-war-hello.git']]])
                 }
             }
          }
@@ -32,7 +32,7 @@ pipeline {
                 expression { params.BRANCH_NAME == 'fe/dev' }
             }
             steps {
-                deployToTomcat('65.0.21.90', 'tomcat', 'tomcat', 'http://65.0.21.90:8080/manager/text', '/sample-war-hello', 'Dev')
+                deployToTomcat('52.66.207.159', 'tomcat', 'tomcat', 'http://52.66.207.159:8080/manager/text', '/sample-war-hello', 'Dev')
             }
         }
         stage("Deploy to QA") {
@@ -40,7 +40,7 @@ pipeline {
                 expression { params.BRANCH_NAME == 'fe/qa' }
             }
             steps {
-                deployToTomcat('13.201.187.212', 'tomcat', 'tomcat', 'http://13.201.187.212:8080/manager/text', '/sample-war-hello', 'QA')
+                deployToTomcat('43.205.211.214', 'tomcat', 'tomcat', 'http://43.205.211.214:8080/manager/text', '/sample-war-hello', 'QA')
             }
         }
         stage("Deploy to Prod") {
@@ -51,7 +51,7 @@ pipeline {
                 input(message: "Do you want to proceed to PROD?", ok: "Proceed") // Approval step
 
                 // Deploy to PROD server after approval
-                deployToTomcat('13.127.82.104', 'tomcat', 'tomcat', 'http://13.127.82.104:8080/manager/text', '/sample-war-hello', 'Prod')
+                deployToTomcat('13.235.254.53', 'tomcat', 'tomcat', 'http://13.235.254.53:8080/manager/text', '/sample-war-hello', 'Prod')
                 
                 // Send Slack notification
                 slackSend(channel: 'devops', message: "Deployment to PROD has been approved by saiteja.")
