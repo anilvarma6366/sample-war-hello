@@ -1,6 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>com.boxfuse.samples</groupId>
     <artifactId>hello</artifactId>
     <packaging>war</packaging>
@@ -8,10 +9,11 @@
     <name>hello</name>
     <url>https://github.com/boxfuse/boxfuse-sample-java-war-hello</url>
 
+    <!-- Java version properties -->
     <properties>
         <docker.image.prefix>kammana</docker.image.prefix>
         <sonar.host.url>http://13.234.232.175:9000/</sonar.host.url>
-        <java.version>11</java.version>
+        <java.version>17</java.version> <!-- Use Java 17 -->
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
     </properties>
@@ -27,28 +29,24 @@
 
     <build>
         <plugins>
+            <!-- Sonar plugin for code quality checks -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>3.0.2</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>sonar</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
 
+            <!-- Maven Compiler Plugin to ensure Java version compatibility -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.2</version>
+                <version>3.8.1</version> <!-- Updated version -->
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <source>${java.version}</source> <!-- Java 17 -->
+                    <target>${java.version}</target> <!-- Java 17 -->
                 </configuration>
             </plugin>
 
+            <!-- Maven WAR Plugin to build the WAR file -->
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.3.2</version>
